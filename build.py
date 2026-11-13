@@ -17,7 +17,11 @@ def inline(text):
 
 # script.md: the line under "## Title"; under "## Slogans", "- " starts a slogan and an indented
 # line is its small text.
-title, seconds, slogans, qr, section = "", 9, [], [], None
+title, seconds, slogans, section = "", 9, [], None
+# QR codes: script.md section -> (corner, image). The images are made once, see qr/README.md.
+QR = {"QR code bottom right": ("right", "qr/datasets-qr.svg"),
+      "QR code bottom left": ("left", "qr/challenge-qr.svg")}
+qr = {}
 for line in open("script.md").read().splitlines():
     if line.startswith("## "):
         section = line[3:].strip()
@@ -27,8 +31,8 @@ for line in open("script.md").read().splitlines():
         title = title or inline(line)
     elif section == "Seconds per slogan":
         seconds = float(line)
-    elif section == "QR code":
-        qr.append(inline(line))
+    elif section in QR:
+        qr.setdefault(section, []).append(inline(line))
     elif section != "Slogans":
         continue
     elif line.startswith("- "):
@@ -38,13 +42,13 @@ for line in open("script.md").read().splitlines():
         slogans[-1]["small"] = (slogans[-1]["small"] + " " + inline(line)).strip()
 assert slogans, "no slogans found under '## Slogans' in script.md"
 
-# The QR code image is qr/datasets-qr.svg; script.md gives the label and the line under it.
-qr_html = ""
-if qr:
-    qr_html = (f'<div id="qr"><div class="label">{qr[0]}</div>'
-               + "".join(f'<div class="url">{l}</div>' for l in qr[1:])
-               + f'<img src="{data_uri("qr/datasets-qr.svg")}" alt=""></div>'
-               + '<script>document.body.classList.add("has-qr")</script>')
+# Each QR code with its label above it; any further lines in small grey text.
+qr_html = "".join(
+    f'<div class="qr {QR[s][0]}"><div class="label">{lines[0]}</div>'
+    + "".join(f'<div class="url">{l}</div>' for l in lines[1:])
+    + f'<img src="{data_uri(QR[s][1])}" alt=""></div>' for s, lines in qr.items())
+if qr_html:
+    qr_html += '<script>document.body.classList.add("has-qr")</script>'
 
 page = (open("template.html").read()
         .replace("%%QR%%", qr_html)
