@@ -40,7 +40,5 @@ Challenge datasets
   The vector index defaults gave 79% recall in our tests. These gave 100%.
 - MariaDB runs *Wikipedia.*
   Every article. Every edit. Every version.
-- Stuck? *Ask us.*
-  The MariaDB team is right here, all weekend.
 - Choose the *MariaDB challenge.*
   Talk to us about the Junction 2026 challenge.
