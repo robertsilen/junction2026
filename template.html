@@ -139,8 +139,7 @@ async function slogans() {
       { duration: 800, delay: ws.length * 110 + 300, easing: glide, fill: "backwards" });
     await wait(ws.length * 110 + SECONDS * 1000);
     await el.animate([{ opacity: 1, transform: "none" }, { opacity: 0, transform: "translateY(-3vh)" }],
-      { duration: 700, easing: glide, fill: "forwards" }).finished;
-    await wait(300);
+      { duration: 450, easing: glide, fill: "forwards" }).finished;
   }
 }
 slogans();

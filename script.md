@@ -14,7 +14,7 @@ MariaDB's Wikipedia challenge
 
 ## Seconds per slogan
 
-9
+10
 
 ## Slogans
 
