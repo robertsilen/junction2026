@@ -18,16 +18,19 @@ MariaDB's Wikipedia challenge
 
 ## Slogans
 
-- From *your blog*…
+- MariaDB runs *your blog.*
   WordPress, Drupal and Nextcloud run on MariaDB.
-- …to *Wikipedia*…
+- MariaDB runs *Wikipedia.*
   Every article. Every edit. Every version. In MariaDB Server.
-- …to *banks and telecoms.*
+- MariaDB runs *banks and telecoms.*
   Mission-critical, at scale, under regulation.
-- *Same server.* Same SQL.
-  At both ends of that range.
 - What did Wikipedia say about *your hometown* in 2010?
+  Explore MariaDB's system-versioned tables.
 - Search by meaning, *not by keywords.*
+  AI and RAG on Wikipedia with MariaDB's vector search.
 - MariaDB. Open source, *born in Finland.*
-- *Build it* with MariaDB.
+  Forked from MySQL in 2009. A full-featured database in 2026.
+- *Build it* with MariaDB!
+  Available on platforms, languages, projects and ORMs near you.
 - Choose the *MariaDB challenge.*
+  Talk to us about the Junction 2026 challenge.
