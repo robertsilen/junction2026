@@ -24,7 +24,7 @@ Challenge
 
 ## QR code right, middle
 
-Datasets
+Dataset examples
 
 ## QR code right, bottom
 
