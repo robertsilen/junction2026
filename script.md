@@ -2,11 +2,15 @@
 
 Edit this file, then run `python3 build.py` and reload the page.
 
-"Wikipedia runs on MariaDB Server", with the logos, stays at the top the whole time. Below it the
-slogans are shown one at a time, in this order, over and over.
+The Wikipedia and MariaDB Server logos and the title under them stay at the top the whole time.
+Below them the slogans are shown one at a time, in this order, over and over.
 
 - Each list item is one slogan. An indented second line is the smaller grey text under it.
 - Words in *stars* are shown in MariaDB coral.
+
+## Title
+
+MariaDB's Wikipedia challenge
 
 ## Slogans
 

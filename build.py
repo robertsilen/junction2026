@@ -15,12 +15,17 @@ def inline(text):
     return re.sub(r"\*(.+?)\*", r"<em>\1</em>", html.escape(text.strip()))
 
 
-# script.md: under "## Slogans", "- " starts a slogan and an indented line is its small text.
-slogans, inside = [], False
+# script.md: the line under "## Title"; under "## Slogans", "- " starts a slogan and an indented
+# line is its small text.
+title, slogans, section = "", [], None
 for line in open("script.md").read().splitlines():
     if line.startswith("## "):
-        inside = line[3:].strip() == "Slogans"
-    elif not inside or not line.strip():
+        section = line[3:].strip()
+    elif not line.strip():
+        continue
+    elif section == "Title":
+        title = title or inline(line)
+    elif section != "Slogans":
         continue
     elif line.startswith("- "):
         if line[2:].strip():
@@ -30,6 +35,7 @@ for line in open("script.md").read().splitlines():
 assert slogans, "no slogans found under '## Slogans' in script.md"
 
 page = (open("template.html").read()
+        .replace("%%TITLE%%", title)
         .replace("%%SCRIPT%%", json.dumps(slogans, ensure_ascii=False, indent=1))
         .replace("%%MARIADB_IMG%%", data_uri("mariaDBServerLogotype_light_transparent.svg"))
         .replace("%%WP_GLOBE%%", data_uri("Wikipedia-logo-v2.svg"))
