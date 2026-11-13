@@ -18,9 +18,9 @@ def inline(text):
 # script.md: the line under "## Title"; under "## Slogans", "- " starts a slogan and an indented
 # line is its small text.
 title, seconds, slogans, section = "", 9, [], None
-# QR codes: script.md section -> (corner, image). The images are made once, see qr/README.md.
-QR = {"QR code bottom right": ("right", "qr/datasets-qr.svg"),
-      "QR code bottom left": ("left", "qr/challenge-qr.svg")}
+# QR codes, top to bottom: script.md section -> image. The images are made once, see qr/README.md.
+QR = {"QR code right, top": "qr/challenge-qr.svg",
+      "QR code right, bottom": "qr/datasets-qr.svg"}
 qr = {}
 for line in open("script.md").read().splitlines():
     if line.startswith("## "):
@@ -44,11 +44,11 @@ assert slogans, "no slogans found under '## Slogans' in script.md"
 
 # Each QR code with its label above it; any further lines in small grey text.
 qr_html = "".join(
-    f'<div class="qr {QR[s][0]}"><div class="label">{lines[0]}</div>'
-    + "".join(f'<div class="url">{l}</div>' for l in lines[1:])
-    + f'<img src="{data_uri(QR[s][1])}" alt=""></div>' for s, lines in qr.items())
+    f'<div class="qr"><div class="label">{qr[s][0]}</div>'
+    + "".join(f'<div class="url">{l}</div>' for l in qr[s][1:])
+    + f'<img src="{data_uri(QR[s])}" alt=""></div>' for s in QR if s in qr)
 if qr_html:
-    qr_html += '<script>document.body.classList.add("has-qr")</script>'
+    qr_html = f'<div id="qrs">{qr_html}</div><script>document.body.classList.add("has-qr")</script>'
 
 page = (open("template.html").read()
         .replace("%%QR%%", qr_html)
