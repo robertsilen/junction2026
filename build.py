@@ -20,7 +20,8 @@ def inline(text):
 title, seconds, slogans, section = "", 9, [], None
 # QR codes, top to bottom: script.md section -> image. The images are made once, see qr/README.md.
 QR = {"QR code right, top": "qr/challenge-qr.svg",
-      "QR code right, bottom": "qr/datasets-qr.svg"}
+      "QR code right, middle": "qr/datasets-qr.svg",
+      "QR code right, bottom": "qr/discord-qr.svg"}
 qr = {}
 for line in open("script.md").read().splitlines():
     if line.startswith("## "):

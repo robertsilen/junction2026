@@ -4,8 +4,8 @@ Edit this file, then run `python3 build.py` and reload the page.
 
 The Wikipedia and MariaDB Server logos and the title under them stay at the top the whole time.
 Below them the slogans are shown one at a time, in this order, over and over.
-The QR codes stay on the right, one above the other, with the line under "## QR code right, top"
-or "## QR code right, bottom" as the label above each. Leave a section out to hide that QR code.
+The QR codes stay on the right, one above the other, with the line under "## QR code right, top",
+"middle" or "bottom" as the label above each. Leave a section out to hide that QR code.
 
 - Each list item is one slogan. An indented second line is the smaller grey text under it.
 - Words in *stars* are shown in MariaDB coral.
@@ -22,9 +22,13 @@ MariaDB's Wikipedia challenge
 
 Challenge
 
-## QR code right, bottom
+## QR code right, middle
 
 Datasets
+
+## QR code right, bottom
+
+#mariadb on Discord
 
 ## Slogans
 
@@ -33,7 +37,7 @@ Datasets
 - Read any article *as it was on any day.*
   Track 2: system-versioned tables. FOR SYSTEM_TIME AS OF '2015-06-01'
 - Two *working examples.*
-  Hack further on them, or start from scratch yourself. Datasets available through the lower QR code.
+  Hack further on them, or start from scratch yourself. Datasets available through the middle QR code.
 - Build for *readers*, or for *editors.*
   Answer questions with sources, find gaps, spot vandalism, settle edit wars.
 - Your own app, a *Toolforge* tool, or a *MediaWiki* extension.
