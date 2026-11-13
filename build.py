@@ -41,8 +41,10 @@ assert slogans, "no slogans found under '## Slogans' in script.md"
 # The QR code image is qr/datasets-qr.svg; script.md gives the label and the line under it.
 qr_html = ""
 if qr:
-    qr_html = (f'<div id="qr"><img src="{data_uri("qr/datasets-qr.svg")}" alt="">'
-               f'<div class="label">{qr[0]}</div>' + "".join(f'<div class="url">{l}</div>' for l in qr[1:]) + "</div>")
+    qr_html = (f'<div id="qr"><div class="label">{qr[0]}</div>'
+               + "".join(f'<div class="url">{l}</div>' for l in qr[1:])
+               + f'<img src="{data_uri("qr/datasets-qr.svg")}" alt=""></div>'
+               + '<script>document.body.classList.add("has-qr")</script>')
 
 page = (open("template.html").read()
         .replace("%%QR%%", qr_html)

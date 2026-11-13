@@ -43,12 +43,15 @@
 
 
 
-  /* Optional, from script.md "## QR code": a QR code in the top right corner, with a label */
-  #qr { position: fixed; top: 4vh; right: 2.5vw; width: 15vw; display: flex; flex-direction: column;
-        align-items: center; gap: 1.2vh; text-align: center; }
-  #qr img { width: 100%; border-radius: .8vw; display: block; }
-  #qr .label { font-size: clamp(14px, 1.6vw, 38px); font-weight: 600; }
-  #qr .url { font-size: clamp(10px, .85vw, 20px); color: var(--dim); word-break: break-all; }
+  /* Optional, from script.md "## QR code": a QR code in the bottom right corner, its label above it.
+     The slogans then keep clear of that corner. */
+  #qr { position: fixed; bottom: 3vh; right: 2vw; width: 12vw; display: flex; flex-direction: column;
+        align-items: center; gap: 1vh; text-align: center; }
+  #qr img { width: 100%; border-radius: .7vw; display: block; }
+  #qr .label { font-size: clamp(14px, 1.5vw, 36px); font-weight: 600; }
+  #qr .url { font-size: clamp(10px, .85vw, 20px); color: var(--dim); }
+  body.has-qr #slogan { left: 16vw; right: 16vw; }
+  body.has-qr #slogan .big { font-size: clamp(30px, 5.6vw, 130px); }
 
   @media (orientation: portrait) {
     #top .logos { flex-direction: column; gap: 2vh; }
