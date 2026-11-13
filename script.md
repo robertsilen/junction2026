@@ -40,8 +40,8 @@ Dataset examples
   Hack further on them, or start from scratch yourself. Datasets available through the middle QR code.
 - Build for *readers*, or for *editors.*
   Answer questions with sources, find gaps, spot vandalism, settle edit wars.
-- Your own app, a *Toolforge* tool, or a *MediaWiki* extension.
-  You choose where your solution lives.
+- Build *your own app.*
+  With Wikipedia data in MariaDB.
 - Tip for the RAG track: *M=16, ef_search=80.*
   The vector index defaults gave 79% recall in our tests. These gave 100%.
 - MariaDB runs *Wikipedia.*
