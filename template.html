@@ -30,14 +30,14 @@
   #top .bar { width: 2px; height: 16vh; background: var(--dim); opacity: .4; }
   #top .mdb { width: 24vw; }
   #top em { font-style: normal; color: var(--coral); }
-  #top .title { font-size: clamp(22px, 3.4vw, 80px); font-weight: 600; letter-spacing: -.01em; }
+  #top .title { font-size: clamp(26px, 4.2vw, 100px); font-weight: 600; letter-spacing: -.01em; }
   #top .wp, #top .bar, #top .mdb, #top .title { opacity: 0; }
 
   /* The slogans, one at a time */
-  #slogan { position: fixed; left: 6vw; right: 6vw; top: 48vh; height: 38vh; display: flex;
+  #slogan { position: fixed; left: 4vw; right: 4vw; top: 45vh; height: 44vh; display: flex;
             flex-direction: column; justify-content: center; text-align: center; }
-  #slogan .big { font-size: clamp(28px, 5vw, 112px); font-weight: 600; line-height: 1.15; letter-spacing: -.01em; }
-  #slogan .small { margin-top: 2.6vh; font-size: clamp(16px, 2.1vw, 48px); color: var(--dim); }
+  #slogan .big { font-size: clamp(32px, 6.6vw, 150px); font-weight: 600; line-height: 1.15; letter-spacing: -.01em; }
+  #slogan .small { margin-top: 3vh; font-size: clamp(18px, 2.9vw, 68px); color: var(--dim); }
   #slogan em { font-style: normal; color: var(--coral); }
   #slogan .w { display: inline-block; white-space: pre; }
 
@@ -60,12 +60,12 @@
 
 <div id="top">
   <div class="logos">
+    <img class="mdb" src="%%MARIADB_IMG%%" alt="MariaDB Server">
+    <div class="bar"></div>
     <div class="wp">
       <img class="globe" src="%%WP_GLOBE%%" alt="Wikipedia">
       <img class="word" src="%%WP_WORD%%" alt="">
     </div>
-    <div class="bar"></div>
-    <img class="mdb" src="%%MARIADB_IMG%%" alt="MariaDB Server">
   </div>
   <div class="title">%%TITLE%%</div>
 </div>
@@ -92,11 +92,11 @@ tick(); setInterval(tick, 1000);
 
 // --- The top line comes in once, then stays -----------------------------------------------------
 $("#top .wp").animate([{ opacity: 0, transform: "rotate(-30deg) scale(.6)" }, { opacity: 1, transform: "none" }],
-  { duration: 1400, delay: 300, easing: pop, fill: "forwards" });
+  { duration: 1400, delay: 1400, easing: pop, fill: "forwards" });
 $("#top .bar").animate([{ opacity: 0, transform: "scaleY(0)" }, { opacity: .4, transform: "none" }],
   { duration: 800, delay: 1100, easing: glide, fill: "forwards" });
-$("#top .mdb").animate([{ opacity: 0, transform: "translateX(5vw)" }, { opacity: 1, transform: "none" }],
-  { duration: 1000, delay: 1400, easing: pop, fill: "forwards" });
+$("#top .mdb").animate([{ opacity: 0, transform: "translateX(-5vw)" }, { opacity: 1, transform: "none" }],
+  { duration: 1000, delay: 300, easing: pop, fill: "forwards" });
 $("#top .title").animate([{ opacity: 0, transform: "translateY(2vh)" }, { opacity: 1, transform: "none" }],
   { duration: 900, delay: 2100, easing: glide, fill: "forwards" });
 
