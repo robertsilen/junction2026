@@ -1,8 +1,7 @@
 # MariaDB booth screen — Junction 2026
 
 A full-screen loop for the big screen at the MariaDB booth: the Wikipedia and MariaDB Server logos
-with the title "MariaDB's Wikipedia challenge" at the top, the slogans below one at a time, and a countdown to the opening
-ceremony at 18:00.
+with the title "MariaDB's Wikipedia challenge" at the top, the slogans below one at a time.
 
 Open `public/index.html` in a browser and press **F** for full screen. It needs no network.
 

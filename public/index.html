@@ -41,9 +41,6 @@
   #slogan em { font-style: normal; color: var(--coral); }
   #slogan .w { display: inline-block; white-space: pre; }
 
-  #clock { position: fixed; left: 0; right: 0; bottom: 4vh; text-align: center;
-           font-size: clamp(16px, 2vw, 44px); font-weight: 600; color: var(--dim);
-           font-variant-numeric: tabular-nums; letter-spacing: .04em; }
 
   @media (orientation: portrait) {
     #top .logos { flex-direction: column; gap: 2vh; }
@@ -71,7 +68,6 @@
 </div>
 
 <div id="slogan"></div>
-<div id="clock"></div>
 
 <script>
 const SLOGANS = [
@@ -116,16 +112,6 @@ const SECONDS = 10.0;          // how long each slogan stays, from script.md
 const $ = s => document.querySelector(s);
 const wait = ms => new Promise(r => setTimeout(r, ms));
 const pop = "cubic-bezier(.2, 1.4, .4, 1)", glide = "cubic-bezier(.6, 0, .2, 1)";
-
-// --- Countdown to the opening ceremony; nothing once it has started -----------------------------
-const REVEAL = new Date(2026, 10, 13, 18, 0, 0);     // Fri 13 Nov 2026, 18:00 local time
-function tick() {
-  const left = Math.round((REVEAL - new Date()) / 1000), clock = $("#clock");
-  if (left <= 0) { clock.textContent = ""; return; }
-  const h = Math.floor(left / 3600), m = Math.floor(left / 60) % 60, s = left % 60;
-  clock.textContent = (h ? h + ":" + String(m).padStart(2, "0") : m) + ":" + String(s).padStart(2, "0");
-}
-tick(); setInterval(tick, 1000);
 
 // --- The top line comes in once, then stays; after a reload it is simply there ----------------
 let reloaded = false;
