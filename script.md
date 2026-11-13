@@ -20,11 +20,11 @@ MariaDB's Wikipedia challenge
 
 ## QR code right, top
 
-Challenge page
+Challenge
 
 ## QR code right, bottom
 
-Challenge datasets
+Datasets
 
 ## Slogans
 
@@ -33,7 +33,7 @@ Challenge datasets
 - Read any article *as it was on any day.*
   Track 2: system-versioned tables. FOR SYSTEM_TIME AS OF '2015-06-01'
 - Two *working examples.*
-  Hack further on them, or start from scratch yourself. Datasets available through the QR code.
+  Hack further on them, or start from scratch yourself. Datasets available through the lower QR code.
 - Build for *readers*, or for *editors.*
   Answer questions with sources, find gaps, spot vandalism, settle edit wars.
 - Your own app, a *Toolforge* tool, or a *MediaWiki* extension.
