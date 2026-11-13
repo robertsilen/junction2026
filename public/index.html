@@ -127,15 +127,22 @@ function tick() {
 }
 tick(); setInterval(tick, 1000);
 
-// --- The top line comes in once, then stays -----------------------------------------------------
-$("#top .wp").animate([{ opacity: 0, transform: "rotate(-30deg) scale(.6)" }, { opacity: 1, transform: "none" }],
-  { duration: 1400, delay: 1400, easing: pop, fill: "forwards" });
-$("#top .bar").animate([{ opacity: 0, transform: "scaleY(0)" }, { opacity: .4, transform: "none" }],
-  { duration: 800, delay: 1100, easing: glide, fill: "forwards" });
-$("#top .mdb").animate([{ opacity: 0, transform: "translateX(-5vw)" }, { opacity: 1, transform: "none" }],
-  { duration: 1000, delay: 300, easing: pop, fill: "forwards" });
-$("#top .title").animate([{ opacity: 0, transform: "translateY(2vh)" }, { opacity: 1, transform: "none" }],
-  { duration: 900, delay: 2100, easing: glide, fill: "forwards" });
+// --- The top line comes in once, then stays; after a reload it is simply there ----------------
+let reloaded = false;
+try { reloaded = sessionStorage.getItem("shown") === "1"; sessionStorage.setItem("shown", "1"); } catch (e) {}
+if (reloaded) {
+  document.querySelectorAll("#top .wp, #top .mdb, #top .title").forEach(e => e.style.opacity = 1);
+  $("#top .bar").style.opacity = .4;
+} else {
+  $("#top .wp").animate([{ opacity: 0, transform: "rotate(-30deg) scale(.6)" }, { opacity: 1, transform: "none" }],
+    { duration: 1400, delay: 1400, easing: pop, fill: "forwards" });
+  $("#top .bar").animate([{ opacity: 0, transform: "scaleY(0)" }, { opacity: .4, transform: "none" }],
+    { duration: 800, delay: 1100, easing: glide, fill: "forwards" });
+  $("#top .mdb").animate([{ opacity: 0, transform: "translateX(-5vw)" }, { opacity: 1, transform: "none" }],
+    { duration: 1000, delay: 300, easing: pop, fill: "forwards" });
+  $("#top .title").animate([{ opacity: 0, transform: "translateY(2vh)" }, { opacity: 1, transform: "none" }],
+    { duration: 900, delay: 2100, easing: glide, fill: "forwards" });
+}
 
 // --- Slogans: each word rises into place, then the whole slogan lifts away ----------------------
 function words(html) {
@@ -161,11 +168,10 @@ function words(html) {
 }
 
 async function slogans() {
-  await wait(3000);
-  for (;;) for (const s of SLOGANS) {
-    const el = $("#slogan");
+  await wait(reloaded ? 500 : 3000);
+  const el = $("#slogan");
+  for (const s of SLOGANS) {
     el.innerHTML = `<div class="big">${words(s.big)}</div>` + (s.small ? `<div class="small">${s.small}</div>` : "");
-    el.style.opacity = 1; el.style.transform = "none";
     const ws = [...el.querySelectorAll(".big .w")];
     ws.forEach((w, i) => w.animate([
       { opacity: 0, transform: "translateY(0.6em) scale(.9)", filter: "blur(8px)" },
@@ -175,9 +181,17 @@ async function slogans() {
     if (small) small.animate([{ opacity: 0, transform: "translateY(1.5vh)" }, { opacity: 1, transform: "none" }],
       { duration: 800, delay: ws.length * 110 + 300, easing: glide, fill: "backwards" });
     await wait(ws.length * 110 + SECONDS * 1000);
+    // No fill: once the fade is over the slogan is emptied, so the next one starts fully visible.
     await el.animate([{ opacity: 1, transform: "none" }, { opacity: 0, transform: "translateY(-3vh)" }],
-      { duration: 450, easing: glide, fill: "forwards" }).finished;
+      { duration: 450, easing: glide }).finished;
+    el.innerHTML = "";
   }
+  // End of the loop: reload, to pick up a new version of the page. Only when the page can be
+  // fetched, so a lost network keeps the loop going instead of showing an error page.
+  try {
+    if ((await fetch(location.href, { cache: "no-store" })).ok) return location.reload();
+  } catch (e) {}
+  slogans();
 }
 slogans();
 
