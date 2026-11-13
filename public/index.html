@@ -42,6 +42,14 @@
   #slogan .w { display: inline-block; white-space: pre; }
 
 
+
+  /* Optional, from script.md "## QR code": a QR code in the top right corner, with a label */
+  #qr { position: fixed; top: 4vh; right: 2.5vw; width: 15vw; display: flex; flex-direction: column;
+        align-items: center; gap: 1.2vh; text-align: center; }
+  #qr img { width: 100%; border-radius: .8vw; display: block; }
+  #qr .label { font-size: clamp(14px, 1.6vw, 38px); font-weight: 600; }
+  #qr .url { font-size: clamp(10px, .85vw, 20px); color: var(--dim); word-break: break-all; }
+
   @media (orientation: portrait) {
     #top .logos { flex-direction: column; gap: 2vh; }
     #top .bar { display: none; }
@@ -68,36 +76,45 @@
 </div>
 
 <div id="slogan"></div>
+<div id="qr"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OTAiIGhlaWdodD0iNDkwIiBjbGFzcz0ic2Vnbm8iPjxnIHRyYW5zZm9ybT0ic2NhbGUoMTApIj48cGF0aCBmaWxsPSIjZmZmIiBkPSJNMCAwaDQ5djQ5aC00OXoiLz48cGF0aCBjbGFzcz0icXJsaW5lIiBzdHJva2U9IiMwYjBkMTQiIGQ9Ik00IDQuNWg3bTIgMGgzbTEgMGgxbTUgMGgxbTIgMGg1bTIgMGgybTMgMGg3bS00MSAxaDFtNSAwaDFtMSAwaDRtMSAwaDFtMSAwaDFtMyAwaDFtOCAwaDJtMiAwaDFtMSAwaDFtNSAwaDFtLTQxIDFoMW0xIDBoM20xIDBoMW0xIDBoMW0xIDBoMW0zIDBoMm0xIDBoNG0yIDBoMW0xIDBoMW0xIDBoM20yIDBoMW0xIDBoMW0xIDBoM20xIDBoMW0tNDEgMWgxbTEgMGgzbTEgMGgxbTEgMGgzbTIgMGgxbTEgMGgzbTIgMGgxbTEgMGgzbTIgMGgxbTMgMGgxbTIgMGgxbTEgMGgzbTEgMGgxbS00MSAxaDFtMSAwaDNtMSAwaDFtMSAwaDJtNSAwaDJtNCAwaDFtMSAwaDJtNCAwaDJtMyAwaDFtMSAwaDNtMSAwaDFtLTQxIDFoMW01IDBoMW0xIDBoMm0zIDBoMm0xIDBoNW0zIDBoMW0zIDBoM20xIDBoMW0xIDBoMW01IDBoMW0tNDEgMWg3bTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGg3bS0zMiAxaDFtMSAwaDFtMSAwaDFtMSAwaDJtNiAwaDNtMiAwaDFtMSAwaDFtLTI5IDFoMW0yIDBoNG0zIDBoMW0xIDBoMm0xIDBoMW0yIDBoMm0xIDBoMW0xIDBoMW0yIDBoMW0zIDBoMm0xIDBoNW0tMzkgMWgybTEgMGgybTcgMGgzbTEgMGgxbTIgMGgybTEgMGgxbTMgMGgybTIgMGgybTEgMGgxbTMgMGgxbTEgMGgxbS00MCAxaDJtMyAwaDZtMSAwaDFtMSAwaDFtMSAwaDJtMiAwaDFtMiAwaDRtMSAwaDNtMSAwaDNtMSAwaDJtMSAwaDFtLTQxIDFoNW02IDBoMW0yIDBoMW0yIDBoM20xIDBoMm0xIDBoMW0xIDBoMW0xIDBoMW0xIDBoNG0zIDBoMW0xIDBoMW0tMzkgMWgzbTEgMGgzbTIgMGgxbTEgMGgxbTQgMGgzbTEgMGgybTIgMGg1bTQgMGgzbS0zNiAxaDFtMSAwaDJtNCAwaDFtMSAwaDNtMiAwaDNtMSAwaDJtMSAwaDFtNCAwaDJtMSAwaDVtNCAwaDFtLTQxIDFoMW0yIDBoNm0xIDBoMW0xIDBoNW0yIDBoM20xIDBoMW00IDBoN201IDBoMW0tMzkgMWgxbTUgMGgybTEgMGgybTIgMGgxbTEgMGgzbTMgMGgxbTEgMGg0bTEgMGgxbTEgMGg2bTIgMGgxbS00MSAxaDFtMSAwaDFtMiAwaDNtMSAwaDFtMSAwaDNtMyAwaDFtMSAwaDNtMSAwaDRtMSAwaDFtMiAwaDRtMiAwaDFtMSAwaDJtLTQxIDFoMW0xIDBoM200IDBoMW0yIDBoMW0zIDBoMm0xIDBoMW0yIDBoNG0xIDBoMm0xIDBoNm0yIDBoMW0xIDBoMW0tNDAgMWgybTIgMGgzbTIgMGg0bTIgMGgxbTEgMGgybTEgMGgxbTEgMGg5bTMgMGgybTEgMGgxbTEgMGgxbS00MSAxaDFtNCAwaDFtMSAwaDFtMyAwaDJtMiAwaDFtMSAwaDFtMSAwaDFtMyAwaDFtNCAwaDFtNCAwaDFtMyAwaDFtMiAwaDFtLTQxIDFoMW01IDBoNG0zIDBoMW0xIDBoMW0yIDBoMm0xIDBoMm0xIDBoMW0yIDBoNG0xIDBoMW0xIDBoMm0xIDBoMW0tMzcgMWgxbTEgMGgybTQgMGgxbTEgMGgxbTEgMGgxbTEgMGgybTEgMGgxbTEgMGgxMG0xIDBoMm0xIDBoMm0xIDBoMW0yIDBoMW0tNDEgMWgybTIgMGg2bTEgMGgxbTEgMGgxbTIgMGgxbTMgMGg0bTMgMGgxbTEgMGg0bTIgMGg0bTEgMGgxbS00MSAxaDFtMiAwaDFtMSAwaDFtMiAwaDJtMiAwaDJtMSAwaDRtMSAwaDFtMyAwaDFtMiAwaDJtMSAwaDJtMSAwaDFtMSAwaDFtMSAwaDFtMSAwaDFtLTQwIDFoMm0xIDBoMW0xIDBoNG0xIDBoMm0xIDBoMW0yIDBoNm0yIDBoMW0xIDBoMW00IDBoMm0xIDBoMm0xIDBoMW0yIDBoMW0tNDEgMWgybTEgMGgxbTMgMGgxbTMgMGgzbTEgMGgxbTEgMGg1bTEgMGgxbTMgMGgybTEgMGgybTEgMGgzbTEgMGgxbTIgMGgxbS00MSAxaDFtMyAwaDNtMSAwaDFtMSAwaDZtMSAwaDZtMiAwaDFtMSAwaDNtMSAwaDFtMSAwaDhtLTQwIDFoMW0yIDBoMW0yIDBoMm0yIDBoMW0xIDBoMW0xIDBoMm0zIDBoNW0xIDBoMW00IDBoNW0xIDBoMW0xIDBoMW0tMzkgMWg3bTEgMGgxbTEgMGgybTEgMGgzbTEgMGgxbTEgMGgxbTIgMGgzbTMgMGgxbTQgMGgybTMgMGgybS0zNCAxaDNtMyAwaDFtMiAwaDFtMyAwaDFtMSAwaDFtMSAwaDFtMSAwaDFtNCAwaDJtMSAwaDFtMiAwaDRtLTQxIDFoM20zIDBoNm0xIDBoMW0xIDBoMW00IDBoMm0yIDBoNG0xIDBoM20xIDBoMW0yIDBoMW0zIDBoMW0tMzkgMWgybTEgMGgxbTEgMGgxbTEgMGg0bTIgMGgybTQgMGg0bTcgMGgxbTEgMGg0bTEgMGgxbS00MCAxaDNtMiAwaDNtMSAwaDFtMSAwaDJtMiAwaDFtMSAwaDFtMyAwaDFtMSAwaDFtMSAwaDRtMiAwaDdtMSAwaDJtLTMzIDFoMm0yIDBoMW0zIDBoMm0zIDBoMm0xIDBoMW0yIDBoM20yIDBoMW0zIDBoMW0zIDBoMW0tNDEgMWg3bTEgMGgxbTIgMGgzbTIgMGgybTEgMGgxbTEgMGgxbTMgMGgzbTQgMGgxbTEgMGgxbTEgMGgxbTEgMGgzbS00MSAxaDFtNSAwaDFtMSAwaDNtMyAwaDNtMSAwaDNtMSAwaDNtMyAwaDJtMSAwaDJtMyAwaDJtMiAwaDFtLTQxIDFoMW0xIDBoM20xIDBoMW0yIDBoMm00IDBoNG0xIDBoMW0xIDBoMW0xIDBoMW0yIDBoM20xIDBoN20xIDBoMm0tNDEgMWgxbTEgMGgzbTEgMGgxbTMgMGgxbTYgMGgxbTIgMGgxbTUgMGgybTMgMGgybTIgMGgybTIgMGgybS00MSAxaDFtMSAwaDNtMSAwaDFtMSAwaDJtMSAwaDFtMiAwaDJtMSAwaDNtMiAwaDFtMSAwaDFtMSAwaDRtMiAwaDJtMiAwaDFtMSAwaDNtLTQxIDFoMW01IDBoMW0zIDBoMW0yIDBoMW0yIDBoMW0xIDBoM20xIDBoM20xIDBoMm0zIDBoMm00IDBoMW0tMzggMWg3bTQgMGgxbTUgMGgxbTEgMGgybTEgMGgxbTQgMGgybTMgMGgxbTEgMGgxbTEgMGgxbTMgMGgxIi8+PC9nPjwvc3ZnPgo=" alt=""><div class="label">Challenge datasets</div></div>
 
 <script>
 const SLOGANS = [
  {
-  "big": "MariaDB runs <em>your blog.</em>",
-  "small": "WordPress, Drupal and Nextcloud run on MariaDB."
+  "big": "Ask Wikipedia anything, <em>in any language.</em>",
+  "small": "Track 1: RAG with MariaDB&#x27;s vector search. Ask in Finnish, find it in Swedish."
+ },
+ {
+  "big": "Read any article <em>as it was on any day.</em>",
+  "small": "Track 2: system-versioned tables. FOR SYSTEM_TIME AS OF &#x27;2015-06-01&#x27;"
+ },
+ {
+  "big": "<em>The data is ready.</em> Start in minutes.",
+  "small": "History of Finland in Finnish, Swedish and English, with vectors, and 862,076 versions of edit history."
+ },
+ {
+  "big": "Two working examples. <em>Fork one.</em>",
+  "small": "A cross-language search page and a Wikipedia time machine, each running in about three minutes."
+ },
+ {
+  "big": "Build for <em>readers</em>, or for <em>editors.</em>",
+  "small": "Answer questions with sources, find gaps, spot vandalism, settle edit wars."
+ },
+ {
+  "big": "Your own app, a <em>Toolforge</em> tool, or a <em>MediaWiki</em> extension.",
+  "small": "Wikipedia runs on MediaWiki, and MediaWiki runs on MariaDB."
+ },
+ {
+  "big": "Tip for the RAG track: <em>M=16, ef_search=80.</em>",
+  "small": "The vector index defaults gave 79% recall in our tests. These gave 100%."
  },
  {
   "big": "MariaDB runs <em>Wikipedia.</em>",
-  "small": "Every article. Every edit. Every version. In MariaDB Server."
+  "small": "Every article. Every edit. Every version."
  },
  {
-  "big": "MariaDB runs <em>banks and telecoms.</em>",
-  "small": "Mission-critical, at scale, under regulation."
- },
- {
-  "big": "What did Wikipedia say about <em>your hometown</em> in 2010?",
-  "small": "Explore MariaDB&#x27;s system-versioned tables."
- },
- {
-  "big": "Search by meaning, <em>not by keywords.</em>",
-  "small": "AI and RAG on Wikipedia with MariaDB&#x27;s vector search."
- },
- {
-  "big": "MariaDB. Open source, <em>born in Finland.</em>",
-  "small": "Forked from MySQL in 2009. A full-featured database in 2026."
- },
- {
-  "big": "<em>Build it</em> with MariaDB!",
-  "small": "Available on platforms, languages, projects and ORMs near you."
+  "big": "Stuck? <em>Ask us.</em>",
+  "small": "The MariaDB team is right here, all weekend."
  },
  {
   "big": "Choose the <em>MariaDB challenge.</em>",

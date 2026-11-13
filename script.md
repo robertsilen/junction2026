@@ -4,6 +4,8 @@ Edit this file, then run `python3 build.py` and reload the page.
 
 The Wikipedia and MariaDB Server logos and the title under them stay at the top the whole time.
 Below them the slogans are shown one at a time, in this order, over and over.
+If there is a "## QR code" section, the QR code (qr/datasets-qr.svg) stays in the top right corner,
+with the first line under it as its label and the next lines in small grey text.
 
 - Each list item is one slogan. An indented second line is the smaller grey text under it.
 - Words in *stars* are shown in MariaDB coral.
@@ -16,21 +18,29 @@ MariaDB's Wikipedia challenge
 
 10
 
+## QR code
+
+Challenge datasets
+
 ## Slogans
 
-- MariaDB runs *your blog.*
-  WordPress, Drupal and Nextcloud run on MariaDB.
+- Ask Wikipedia anything, *in any language.*
+  Track 1: RAG with MariaDB's vector search. Ask in Finnish, find it in Swedish.
+- Read any article *as it was on any day.*
+  Track 2: system-versioned tables. FOR SYSTEM_TIME AS OF '2015-06-01'
+- *The data is ready.* Start in minutes.
+  History of Finland in Finnish, Swedish and English, with vectors, and 862,076 versions of edit history.
+- Two working examples. *Fork one.*
+  A cross-language search page and a Wikipedia time machine, each running in about three minutes.
+- Build for *readers*, or for *editors.*
+  Answer questions with sources, find gaps, spot vandalism, settle edit wars.
+- Your own app, a *Toolforge* tool, or a *MediaWiki* extension.
+  Wikipedia runs on MediaWiki, and MediaWiki runs on MariaDB.
+- Tip for the RAG track: *M=16, ef_search=80.*
+  The vector index defaults gave 79% recall in our tests. These gave 100%.
 - MariaDB runs *Wikipedia.*
-  Every article. Every edit. Every version. In MariaDB Server.
-- MariaDB runs *banks and telecoms.*
-  Mission-critical, at scale, under regulation.
-- What did Wikipedia say about *your hometown* in 2010?
-  Explore MariaDB's system-versioned tables.
-- Search by meaning, *not by keywords.*
-  AI and RAG on Wikipedia with MariaDB's vector search.
-- MariaDB. Open source, *born in Finland.*
-  Forked from MySQL in 2009. A full-featured database in 2026.
-- *Build it* with MariaDB!
-  Available on platforms, languages, projects and ORMs near you.
+  Every article. Every edit. Every version.
+- Stuck? *Ask us.*
+  The MariaDB team is right here, all weekend.
 - Choose the *MariaDB challenge.*
   Talk to us about the Junction 2026 challenge.

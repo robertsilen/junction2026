@@ -17,7 +17,7 @@ def inline(text):
 
 # script.md: the line under "## Title"; under "## Slogans", "- " starts a slogan and an indented
 # line is its small text.
-title, seconds, slogans, section = "", 9, [], None
+title, seconds, slogans, qr, section = "", 9, [], [], None
 for line in open("script.md").read().splitlines():
     if line.startswith("## "):
         section = line[3:].strip()
@@ -27,6 +27,8 @@ for line in open("script.md").read().splitlines():
         title = title or inline(line)
     elif section == "Seconds per slogan":
         seconds = float(line)
+    elif section == "QR code":
+        qr.append(inline(line))
     elif section != "Slogans":
         continue
     elif line.startswith("- "):
@@ -36,7 +38,14 @@ for line in open("script.md").read().splitlines():
         slogans[-1]["small"] = (slogans[-1]["small"] + " " + inline(line)).strip()
 assert slogans, "no slogans found under '## Slogans' in script.md"
 
+# The QR code image is qr/datasets-qr.svg; script.md gives the label and the line under it.
+qr_html = ""
+if qr:
+    qr_html = (f'<div id="qr"><img src="{data_uri("qr/datasets-qr.svg")}" alt="">'
+               f'<div class="label">{qr[0]}</div>' + "".join(f'<div class="url">{l}</div>' for l in qr[1:]) + "</div>")
+
 page = (open("template.html").read()
+        .replace("%%QR%%", qr_html)
         .replace("%%TITLE%%", title)
         .replace("%%SECONDS%%", str(seconds))
         .replace("%%SCRIPT%%", json.dumps(slogans, ensure_ascii=False, indent=1))

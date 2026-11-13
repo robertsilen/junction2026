@@ -42,6 +42,14 @@
   #slogan .w { display: inline-block; white-space: pre; }
 
 
+
+  /* Optional, from script.md "## QR code": a QR code in the top right corner, with a label */
+  #qr { position: fixed; top: 4vh; right: 2.5vw; width: 15vw; display: flex; flex-direction: column;
+        align-items: center; gap: 1.2vh; text-align: center; }
+  #qr img { width: 100%; border-radius: .8vw; display: block; }
+  #qr .label { font-size: clamp(14px, 1.6vw, 38px); font-weight: 600; }
+  #qr .url { font-size: clamp(10px, .85vw, 20px); color: var(--dim); word-break: break-all; }
+
   @media (orientation: portrait) {
     #top .logos { flex-direction: column; gap: 2vh; }
     #top .bar { display: none; }
@@ -68,6 +76,7 @@
 </div>
 
 <div id="slogan"></div>
+%%QR%%
 
 <script>
 const SLOGANS = %%SCRIPT%%;
