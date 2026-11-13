@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TV Screens</title>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@500;600;700&family=Geist:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#000;--card:#111013;--ink:#fff;--muted:#a6a2ad;--copper:#8f3bfc;--teal:#3dd3ee}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{background:var(--bg);color:var(--ink);font-family:'Geist',system-ui,sans-serif;padding:48px 16px}
+  .wrap{max-width:1100px;margin:0 auto}
+  h1{font-family:'Figtree',system-ui,sans-serif;font-weight:600;font-size:clamp(28px,5vw,48px);letter-spacing:-.02em}
+  p.lead{color:var(--muted);margin:8px 0 28px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+  a.card{display:block;text-decoration:none;color:inherit;background:var(--card);border:1px solid rgba(156,195,204,.15);
+    border-radius:14px;padding:20px;transition:transform .15s,border-color .15s}
+  a.card:hover{transform:translateY(-3px);border-color:var(--copper)}
+  .num{font-family:'Figtree',sans-serif;font-weight:600;color:var(--copper);font-size:28px}
+  .name{font-weight:700;font-size:20px;margin:6px 0 4px}
+  .desc{color:var(--muted);font-size:14px;line-height:1.45}
+  .play{margin-top:28px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+  .btn{background:var(--copper);color:#fff;font-weight:700;border:0;border-radius:999px;padding:12px 22px;font-size:16px;cursor:pointer;text-decoration:none}
+  label{color:var(--muted)}
+  select{background:var(--card);color:var(--ink);border:1px solid rgba(156,195,204,.3);border-radius:8px;padding:8px}
+  .tip{color:var(--muted);font-size:14px;margin-top:20px}
+  kbd{background:var(--card);border:1px solid rgba(156,195,204,.3);border-radius:4px;padding:1px 6px}
+
+  /* playlist mode */
+  body.playing{padding:0;overflow:hidden;cursor:none}
+  body.playing .wrap{display:none}
+  iframe{position:fixed;inset:0;width:100%;height:100%;border:0;opacity:0;transition:opacity 1.2s ease}
+  iframe.on{opacity:1}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Junction 2026 TV screens</h1>
+    <p class="lead">MariaDB · Wikipedia Challenge. Same layout on four backgrounds. Each loops forever and counts down to the 19:30 reveal.</p>
+    <div class="grid">
+      <a class="card" href="01-rings.html"><div class="num">01</div><div class="name">Rings</div><div class="desc">MariaDB brand rings, dim and turning very slowly.</div></a>
+      <a class="card" href="02-logo-wall.html"><div class="num">02</div><div class="name">Logo Wall</div><div class="desc">Quiet tilted wall of logos behind a glass card.</div></a>
+      <a class="card" href="03-keynote.html"><div class="num">03</div><div class="name">Light</div><div class="desc">Bright Apple-style background with a faint logo pattern.</div></a>
+      <a class="card" href="04-horizon.html"><div class="num">04</div><div class="name">Horizon</div><div class="desc">Pure black, starfield and a soft horizon line.</div></a>
+    </div>
+    <div class="play">
+      <button class="btn" id="go">▶ Play all on rotation</button>
+      <label>switch every
+        <select id="every">
+          <option value="60">1 min</option>
+          <option value="120" selected>2 min</option>
+          <option value="300">5 min</option>
+        </select>
+      </label>
+    </div>
+    <p class="tip">On the TV: open a screen, press <kbd>F</kbd> or double-click for fullscreen.</p>
+  </div>
+
+<script>
+const SCREENS = ["01-rings.html", "02-logo-wall.html", "03-keynote.html", "04-horizon.html"];
+
+function play(seconds){
+  document.body.classList.add('playing');
+  const frames = [document.createElement('iframe'), document.createElement('iframe')];
+  frames.forEach(f => document.body.appendChild(f));
+  let i = 0, cur = 0;
+  function next(){
+    const f = frames[cur ^ 1];
+    f.onload = () => { f.classList.add('on'); frames[cur].classList.remove('on'); cur ^= 1; };
+    f.src = SCREENS[i++ % SCREENS.length];
+  }
+  next();
+  setInterval(next, seconds * 1000);
+}
+
+document.getElementById('go').onclick = () => {
+  const s = +document.getElementById('every').value;
+  document.documentElement.requestFullscreen?.().catch(() => {});
+  history.replaceState(null, '', '?play=' + s);
+  play(s);
+};
+const q = new URLSearchParams(location.search).get('play');
+if(q) play(Math.max(15, +q || 120));
+addEventListener('keydown', e => {
+  if((e.key === 'f' || e.key === 'F') && document.body.classList.contains('playing'))
+    document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen();
+});
+</script>
+</body>
+</html>
