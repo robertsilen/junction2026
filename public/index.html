@@ -112,6 +112,7 @@ const SLOGANS = [
   "small": ""
  }
 ];
+const SECONDS = 9.0;          // how long each slogan stays, from script.md
 const $ = s => document.querySelector(s);
 const wait = ms => new Promise(r => setTimeout(r, ms));
 const pop = "cubic-bezier(.2, 1.4, .4, 1)", glide = "cubic-bezier(.6, 0, .2, 1)";
@@ -173,7 +174,7 @@ async function slogans() {
     const small = el.querySelector(".small");
     if (small) small.animate([{ opacity: 0, transform: "translateY(1.5vh)" }, { opacity: 1, transform: "none" }],
       { duration: 800, delay: ws.length * 110 + 300, easing: glide, fill: "backwards" });
-    await wait(ws.length * 110 + 4800);
+    await wait(ws.length * 110 + SECONDS * 1000);
     await el.animate([{ opacity: 1, transform: "none" }, { opacity: 0, transform: "translateY(-3vh)" }],
       { duration: 700, easing: glide, fill: "forwards" }).finished;
     await wait(300);

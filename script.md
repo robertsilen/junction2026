@@ -12,6 +12,10 @@ Below them the slogans are shown one at a time, in this order, over and over.
 
 MariaDB's Wikipedia challenge
 
+## Seconds per slogan
+
+9
+
 ## Slogans
 
 - From *your blog*…
