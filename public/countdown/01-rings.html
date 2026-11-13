@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MariaDB Rings</title>
+<script src="brand.js"></script>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;overflow:hidden}
+  body{background:#000}
+  #bg{position:fixed;inset:0;width:100%;height:100%;display:block}
+</style>
+</head>
+<body>
+  <canvas id="bg"></canvas>
+
+<script>
+/* Background: segmented brand-colour rings (as on mariadb.com), very dim, turning very slowly.
+   They sit outside the centre so the text stays clean; on a 16:9 screen they frame it from both sides. */
+const C = BRAND.colors;
+const PALETTE = [C.cyan, C.yellow, C.ultraviolet, C.green, C.flare];
+const OPACITY = .13;           // overall strength of the rings
+const cv = document.getElementById('bg');
+const ctx = cv.getContext('2d');
+const rand = (a, b) => a + Math.random() * (b - a);
+let W, H, U, rings = [];
+
+function build(){
+  rings = [];
+  const n = 8;
+  for(let i = 0; i < n; i++){
+    const segs = [];
+    let a = rand(0, Math.PI * 2);
+    const end = a + Math.PI * 2;
+    while(a < end - .3){
+      const len = rand(.35, 1.1);
+      const gap = rand(.12, .45);
+      segs.push({ a0: a, a1: Math.min(a + len, end - gap), col: PALETTE[(Math.random() * PALETTE.length) | 0] });
+      a += len + gap;
+    }
+    rings.push({
+      r: .56 + i * .045,                         // radius in units of the short screen side
+      w: .022,                                   // ring thickness
+      speed: (i % 2 ? 1 : -1) * rand(.006, .014) // radians per second: one turn takes 7–17 minutes
+      , segs,
+    });
+  }
+}
+function resize(){
+  const dpr = Math.min(devicePixelRatio || 1, 1.5);
+  W = innerWidth; H = innerHeight; U = Math.min(W, H);
+  cv.width = W * dpr; cv.height = H * dpr;
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+}
+addEventListener('resize', resize);
+resize(); build();
+
+function frame(now){
+  try {
+    const t = now / 1000, cx = W / 2, cy = H * .53;
+    ctx.clearRect(0, 0, W, H);
+    ctx.lineCap = 'butt';
+    for(const ring of rings){
+      const r = Math.max(1, ring.r * U), rot = t * ring.speed;
+      ctx.lineWidth = Math.max(1, ring.w * U);
+      for(const s of ring.segs){
+        ctx.globalAlpha = OPACITY;
+        ctx.strokeStyle = s.col;
+        ctx.beginPath(); ctx.arc(cx, cy, r, s.a0 + rot, s.a1 + rot); ctx.stroke();
+      }
+    }
+    // thin hairline circles, like the site
+    ctx.globalAlpha = .07; ctx.strokeStyle = '#fff'; ctx.lineWidth = 1;
+    for(const k of [.52, .93]){ ctx.beginPath(); ctx.arc(cx, cy, k * U, 0, Math.PI * 2); ctx.stroke(); }
+    ctx.globalAlpha = 1;
+  } catch(e) { /* never stop the loop */ }
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+</script>
+<script src="screen.js" data-theme="dark"></script>
+</body>
+</html>
