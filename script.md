@@ -14,8 +14,14 @@ MariaDB's Wikipedia challenge
 
 ## Slogans
 
-- Every article. Every edit. *Every version.*
-  Wikipedia keeps it all in MariaDB.
+- From *your blog*…
+  WordPress, Drupal and Nextcloud run on MariaDB.
+- …to *Wikipedia*…
+  Every article. Every edit. Every version. In MariaDB Server.
+- …to *banks and telecoms.*
+  Mission-critical, at scale, under regulation.
+- *Same server.* Same SQL.
+  At both ends of that range.
 - What did Wikipedia say about *your hometown* in 2010?
 - Search by meaning, *not by keywords.*
 - MariaDB. Open source, *born in Finland.*
