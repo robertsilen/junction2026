@@ -25,17 +25,17 @@ Challenge datasets
 ## Slogans
 
 - Ask Wikipedia anything, *in any language.*
-  Track 1: RAG with MariaDB's vector search. Ask in Finnish, find it in Swedish.
+  Track 1: RAG with MariaDB's vector search.
 - Read any article *as it was on any day.*
   Track 2: system-versioned tables. FOR SYSTEM_TIME AS OF '2015-06-01'
 - *The data is ready.* Start in minutes.
-  History of Finland in Finnish, Swedish and English, with vectors, and 862,076 versions of edit history.
-- Two working examples. *Fork one.*
-  A cross-language search page and a Wikipedia time machine, each running in about three minutes.
+  Datasets available through the QR code.
+- Two *working examples.*
+  Hack further on them, or start from scratch yourself.
 - Build for *readers*, or for *editors.*
   Answer questions with sources, find gaps, spot vandalism, settle edit wars.
 - Your own app, a *Toolforge* tool, or a *MediaWiki* extension.
-  Wikipedia runs on MediaWiki, and MediaWiki runs on MariaDB.
+  You choose where your solution lives.
 - Tip for the RAG track: *M=16, ef_search=80.*
   The vector index defaults gave 79% recall in our tests. These gave 100%.
 - MariaDB runs *Wikipedia.*
